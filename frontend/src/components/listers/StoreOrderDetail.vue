@@ -1,7 +1,7 @@
 <template>
     <v-card outlined>
         <v-card-title>
-            SotreOrder # {{item._links.self.href.split("/")[item._links.self.href.split("/").length - 1]}}
+            StoreOrder # {{item._links.self.href.split("/")[item._links.self.href.split("/").length - 1]}}
         </v-card-title>
 
         <v-card-text>
@@ -16,6 +16,9 @@
             </div>
             <div>
                 <String label="MenuId" v-model="item.menuId" :editMode="editMode" @change="change" />
+            </div>
+            <div>
+                <String label="Status" v-model="item.status" :editMode="editMode" @change="change" />
             </div>
         </v-card-text>
 
@@ -63,7 +66,7 @@
     const axios = require('axios').default;
 
     export default {
-        name: 'SotreOrderDetail',
+        name: 'StoreOrderDetail',
         components:{},
         props: {
         },
@@ -74,7 +77,7 @@
         async created() {
             var me = this;
             var params = this.$route.params;
-            var temp = await axios.get(axios.fixUrl('/sotreOrders/' + params.id))
+            var temp = await axios.get(axios.fixUrl('/storeOrders/' + params.id))
             if(temp.data) {
                 me.item = temp.data
             }

@@ -12,10 +12,10 @@ import java.util.Date;
 
 
 @Entity
-@Table(name="SotreOrder_table")
+@Table(name="StoreOrder_table")
 @Data
 
-public class SotreOrder  {
+public class StoreOrder  {
 
 
     
@@ -51,6 +51,12 @@ public class SotreOrder  {
     
     
     private String menuId;
+    
+    
+    
+    
+    
+    private String status;
 
     @PostPersist
     public void onPostPersist(){
@@ -76,9 +82,9 @@ public class SotreOrder  {
 
     }
 
-    public static SotreOrderRepository repository(){
-        SotreOrderRepository sotreOrderRepository = StoreApplication.applicationContext.getBean(SotreOrderRepository.class);
-        return sotreOrderRepository;
+    public static StoreOrderRepository repository(){
+        StoreOrderRepository storeOrderRepository = StoreApplication.applicationContext.getBean(StoreOrderRepository.class);
+        return storeOrderRepository;
     }
 
 
@@ -87,17 +93,17 @@ public class SotreOrder  {
     public static void orderInfoTransfer(Paid paid){
 
         /** Example 1:  new item 
-        SotreOrder sotreOrder = new SotreOrder();
-        repository().save(sotreOrder);
+        StoreOrder storeOrder = new StoreOrder();
+        repository().save(storeOrder);
 
         */
 
         /** Example 2:  finding and process
         
-        repository().findById(paid.get???()).ifPresent(sotreOrder->{
+        repository().findById(paid.get???()).ifPresent(storeOrder->{
             
-            sotreOrder // do something
-            repository().save(sotreOrder);
+            storeOrder // do something
+            repository().save(storeOrder);
 
 
          });
@@ -108,17 +114,17 @@ public class SotreOrder  {
     public static void cookCancel(OrderCancelled orderCancelled){
 
         /** Example 1:  new item 
-        SotreOrder sotreOrder = new SotreOrder();
-        repository().save(sotreOrder);
+        StoreOrder storeOrder = new StoreOrder();
+        repository().save(storeOrder);
 
         */
 
         /** Example 2:  finding and process
         
-        repository().findById(orderCancelled.get???()).ifPresent(sotreOrder->{
+        repository().findById(orderCancelled.get???()).ifPresent(storeOrder->{
             
-            sotreOrder // do something
-            repository().save(sotreOrder);
+            storeOrder // do something
+            repository().save(storeOrder);
 
 
          });

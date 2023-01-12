@@ -26,6 +26,9 @@
                             <v-list-item-subtitle>
                                 MenuId :  {{item.menuId }}
                             </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                Status :  {{item.status }}
+                            </v-list-item-subtitle>
                         </v-list-item-content>
 
                         <v-list-item-action>
@@ -43,7 +46,7 @@
     const axios = require('axios').default;
 
     export default {
-        name: 'SotreOrderPicker',
+        name: 'StoreOrderPicker',
         props: {
             value: [String, Object, Array, Number, Boolean],
         },
@@ -53,14 +56,14 @@
         }),
         async created() {
             var me = this;
-            var temp = await axios.get(axios.fixUrl('/sotreOrders'))
+            var temp = await axios.get(axios.fixUrl('/storeOrders'))
             if(temp.data) {
-                me.list = temp.data._embedded.sotreOrders;
+                me.list = temp.data._embedded.storeOrders;
             }
 
             if(me.value && typeof me.value == "object" && Object.values(me.value)[0]) {
                 var id = Object.values(me.value)[0];
-                var tmpValue = await axios.get(axios.fixUrl('/sotreOrders/' + id))
+                var tmpValue = await axios.get(axios.fixUrl('/storeOrders/' + id))
                 if(tmpValue.data) {
                     var val = tmpValue.data
                     me.list.forEach(function(item, idx) {
@@ -77,6 +80,8 @@
                 if(val != undefined) {
                     var arr = this.list[val]._links.self.href.split('/');
                     obj['id'] = arr[4]; 
+                    
+                    
                     
                     
                     

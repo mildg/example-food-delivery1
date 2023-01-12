@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 style = "margin-left:4.5%; margin-top:-10px;">SotreOrder</h1>
+        <h1 style = "margin-left:4.5%; margin-top:-10px;">StoreOrder</h1>
         <v-col style="margin-bottom:40px;">
             <div class="text-center">
                 <v-dialog
@@ -10,7 +10,7 @@
                         hide-overlay
                         transition="dialog-bottom-transition"
                 >
-                    <SotreOrder :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" 
+                    <StoreOrder :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" 
                             @add="append" v-if="tick"/>
 
                     <v-btn
@@ -33,7 +33,7 @@
             </div>
         </v-col>
         <v-row>
-            <SotreOrder :offline="offline" class="video-card" v-for="(value, index) in values" v-model="values[index]" v-bind:key="index" @delete="remove"/>
+            <StoreOrder :offline="offline" class="video-card" v-for="(value, index) in values" v-model="values[index]" v-bind:key="index" @delete="remove"/>
         </v-row>
     </div>
 </template>
@@ -41,12 +41,12 @@
 <script>
 
     const axios = require('axios').default;
-    import SotreOrder from './../SotreOrder.vue';
+    import StoreOrder from './../StoreOrder.vue';
 
     export default {
-        name: 'SotreOrderManager',
+        name: 'StoreOrderManager',
         components: {
-            SotreOrder,
+            StoreOrder,
         },
         props: {
             offline: Boolean
@@ -64,14 +64,15 @@
                 return;
             } 
 
-            var temp = await axios.get(axios.fixUrl('/sotreOrders'))
-            me.values = temp.data._embedded.sotreOrders;
+            var temp = await axios.get(axios.fixUrl('/storeOrders'))
+            me.values = temp.data._embedded.storeOrders;
             
             me.newValue = {
                 'orderId': '',
                 'userId': '',
                 'address': '',
                 'menuId': '',
+                'status': '',
             }
         },
         methods:{

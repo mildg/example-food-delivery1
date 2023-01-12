@@ -13,11 +13,11 @@ import javax.transaction.Transactional;
 
 
 @RestController
-// @RequestMapping(value="/sotreOrders")
+// @RequestMapping(value="/storeOrders")
 @Transactional
-public class SotreOrderController {
+public class StoreOrderController {
     @Autowired
-    SotreOrderRepository sotreOrderRepository;
+    StoreOrderRepository storeOrderRepository;
 
 
 
